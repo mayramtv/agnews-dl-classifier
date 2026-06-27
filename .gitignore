@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+*.h5
+*.keras
+train.csv
+test.csv
+DeepLearningModel.html
+DeepLearningModel.ipynb
