@@ -75,34 +75,49 @@ The project follows a standard deep learning workflow:
     - classification report
 
 ### Project Workflow
-                AG News Dataset
-                       │
-                       ▼
-            Text Cleaning & Encoding
-                       │
-                       ▼
-             Train / Test Split
-                       │
-                       ▼
-          Feature Vectorization
-                       │
-                       ▼
-         Feed-Forward Neural Network
-         Dense → Dense → Softmax
-                       │
-             ┌─────────┴─────────┐
-             ▼                   ▼
-      Hold-Out Validation    K-Fold Validation
-             │                   │
-             └─────────┬─────────┘
-                       ▼
-             Hyperparameter Testing
-                       │
-                       ▼
-              Final Model Selection
-                       │
-                       ▼
-        Accuracy • Loss • Confusion Matrix
+```mermaid
+flowchart LR
+    %% Nodes Definition
+    A[(AG News Dataset<br>120k Articles)] 
+    
+    subgraph Preprocessing [Data Prep & Vectorization]
+        B[Text Cleaning & Tokenization] --> C[Feature Extraction<br>Sparse Features]
+    end
+
+    subgraph Architecture [Neural Network Topology]
+        D[Input Layer] --> E[Dense 1<br>128 Units]
+        E --> F[Dense 2<br>64 Units]
+        F --> G[Output Layer / Softmax<br>4 Classes]
+    end
+
+    subgraph Val [Model Validation]
+        H{Strategy}
+        H -->|Split 1| I[Hold-Out]
+        H -->|Split 2| J[K-Fold]
+    end
+
+    subgraph Eval [Performance Metrics]
+        K[Final Evaluation] --> L[Accuracy: 90.2%]
+        K --> M[Confusion Matrix]
+    end
+
+    %% Pipeline Connections
+    A --> Preprocessing
+    Preprocessing --> Architecture
+    Architecture --> Val
+    I --> Eval
+    J --> Eval
+
+    %% Visual Styling
+    style A fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px
+    style H fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style L fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    style M fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    
+    classDef substyle fill:#f9f9f9,stroke:#ddd,stroke-width:1px,font-style:italic;
+    class Preprocessing,Architecture,Val,Eval substyle;
+```
+
 
 ## Model Summary
 
