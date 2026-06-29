@@ -15,6 +15,6 @@ AG News
 Hold-Out vs K-Fold
 
 **Framework**  
-TensorFlow / Keras
+TensorFlow / Keras  
 ────────────────────────────────────────────
 
