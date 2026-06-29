@@ -74,6 +74,36 @@ The project follows a standard deep learning workflow:
     - confusion matrix
     - classification report
 
+### Project Workflow
+                AG News Dataset
+                       │
+                       ▼
+            Text Cleaning & Encoding
+                       │
+                       ▼
+             Train / Test Split
+                       │
+                       ▼
+          Feature Vectorization
+                       │
+                       ▼
+         Feed-Forward Neural Network
+         Dense → Dense → Softmax
+                       │
+             ┌─────────┴─────────┐
+             ▼                   ▼
+      Hold-Out Validation    K-Fold Validation
+             │                   │
+             └─────────┬─────────┘
+                       ▼
+             Hyperparameter Testing
+                       │
+                       ▼
+              Final Model Selection
+                       │
+                       ▼
+        Accuracy • Loss • Confusion Matrix
+
 ## Model Summary
 
 The final model is a feed-forward neural network with:
